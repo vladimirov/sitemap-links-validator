@@ -31,8 +31,7 @@ public class ResponseCode {
         }
         System.out.println("Total set size: " + hrefHashSet.size());
         for (String linkHashSet : hrefHashSet) {
-            System.out.println(linkHashSet + " " + responseCode(linkHashSet));
-//            System.out.println(linkHashSet + " " + responseMessage(linkHashSet));
+            System.out.println(linkHashSet + " " + responseCode(linkHashSet) + " " + responseMessage(linkHashSet));
         }
     }
 

@@ -31,7 +31,7 @@ public class SitemapParser {
         }
         System.out.println("Total set size: " + hrefHashSet.size());
         for (String linkHashSet : hrefHashSet) {
-            verifyLink(linkHashSet);
+            verifyUrl(linkHashSet);
         }
     }
 
@@ -47,7 +47,7 @@ public class SitemapParser {
         return href;
     }
 
-    private static void verifyLink(String locInternalUrl) {
+    private static void verifyUrl(String locInternalUrl) {
         try {
             URL url = new URL(locInternalUrl);
             HttpURLConnection httpURLConnect = (HttpURLConnection) url.openConnection();
