@@ -31,7 +31,8 @@ public class ResponseCode {
         }
         System.out.println("Total set size: " + hrefHashSet.size());
         for (String linkHashSet : hrefHashSet) {
-            System.out.println(responseCode(linkHashSet));
+            System.out.println(linkHashSet + " " + responseCode(linkHashSet));
+//            System.out.println(linkHashSet + " " + responseMessage(linkHashSet));
         }
     }
 
@@ -53,6 +54,14 @@ public class ResponseCode {
         httpURLConnect.setConnectTimeout(3000);
         httpURLConnect.connect();
         return httpURLConnect.getResponseCode();
+    }
+
+    private static String responseMessage(String hrefUrl) throws IOException {
+        URL linkHashSetUrl = new URL(hrefUrl);
+        HttpURLConnection httpURLConnect = (HttpURLConnection) linkHashSetUrl.openConnection();
+        httpURLConnect.setConnectTimeout(3000);
+        httpURLConnect.connect();
+        return httpURLConnect.getResponseMessage();
     }
 
 }

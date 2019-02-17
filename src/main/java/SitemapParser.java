@@ -10,7 +10,7 @@ import java.util.HashSet;
 
 public class SitemapParser {
 
-    private static String siteUrl = "";
+    private static String siteUrl = "https://wp-dev.space/otm/zymac/develop/";
     private static String sitemapUrl = siteUrl + "sitemap_index.xml";
     private static HashSet<String> hrefHashSet = new HashSet<String>();
 
