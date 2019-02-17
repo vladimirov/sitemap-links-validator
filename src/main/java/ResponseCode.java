@@ -10,7 +10,8 @@ import java.util.HashSet;
 
 public class ResponseCode {
 
-    private static String siteUrl = "https://wp-dev.space/otm/zymac/develop/";
+//    private static String siteUrl = "https://wp-dev.space/otm/zymac/develop/";
+    private static String siteUrl = "https://beetroot.se/";
     private static String sitemapUrl = siteUrl + "sitemap_index.xml";
     private static HashSet<String> hrefHashSet = new HashSet<String>();
 
