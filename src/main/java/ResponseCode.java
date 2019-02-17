@@ -8,9 +8,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashSet;
 
-public class SitemapParser {
+public class ResponseCode {
 
-    private static String siteUrl = "";
+    private static String siteUrl = "https://wp-dev.space/otm/zymac/develop/";
     private static String sitemapUrl = siteUrl + "sitemap_index.xml";
     private static HashSet<String> hrefHashSet = new HashSet<String>();
 
@@ -23,7 +23,7 @@ public class SitemapParser {
                 Elements hrefs = getElementsFromHtml(sitemapUrl.text());
                 for (Element href : hrefs) {
                     String link = href.attr("href");
-                    if (!link.contains("#") && !link.contains("tel") && !link.contains("@")&& !link.isEmpty()) {
+                    if (!link.contains("#") && !link.contains("tel") && !link.contains("@") && !link.isEmpty()) {
                         hrefHashSet.add(link);
                     }
                 }
@@ -31,7 +31,7 @@ public class SitemapParser {
         }
         System.out.println("Total set size: " + hrefHashSet.size());
         for (String linkHashSet : hrefHashSet) {
-            verifyLink(linkHashSet);
+            System.out.println(responseCode(linkHashSet));
         }
     }
 
@@ -47,21 +47,12 @@ public class SitemapParser {
         return href;
     }
 
-    private static void verifyLink(String locInternalUrl) {
-        try {
-            URL url = new URL(locInternalUrl);
-            HttpURLConnection httpURLConnect = (HttpURLConnection) url.openConnection();
-            httpURLConnect.setConnectTimeout(3000);
-            httpURLConnect.connect();
-            if (httpURLConnect.getResponseCode() == 200) {
-                System.out.println(locInternalUrl + " - " + httpURLConnect.getResponseMessage());
-            }
-            if (httpURLConnect.getResponseCode() == HttpURLConnection.HTTP_NOT_FOUND) {
-                System.out.println(locInternalUrl + " - " + httpURLConnect.getResponseMessage() + " - " + HttpURLConnection.HTTP_NOT_FOUND);
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+    private static Integer responseCode(String hrefUrl) throws IOException {
+        URL linkHashSetUrl = new URL(hrefUrl);
+        HttpURLConnection httpURLConnect = (HttpURLConnection) linkHashSetUrl.openConnection();
+        httpURLConnect.setConnectTimeout(3000);
+        httpURLConnect.connect();
+        return httpURLConnect.getResponseCode();
     }
 
 }
